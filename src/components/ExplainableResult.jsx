@@ -17,7 +17,7 @@ export default function ExplainableResult({ analysis }) {
       <li>{unique1.length + unique2.length} meaningful terms appear in only one question.</li>
       <li>The score is {score >= threshold ? 'at or above' : 'below'} the {(threshold * 100).toFixed(0)}% demo duplicate threshold.</li>
     </ul>
-    <div className="term-grid">{[['Matched Terms', matched], ['Unique to Question 1', unique1], ['Unique to Question 2', unique2]].map(([title, terms]) => <div key={title}><h4>{title}</h4><Terms terms={terms} /></div>)}</div>
+    <div className="term-grid">{[['Matched Terms', matched], ['Unique to Question 1', unique1], ['Unique to Question 2', unique2]].map(([title, terms]) => <div key={title} className={title === 'Matched Terms' ? 'matched-term-group' : undefined}><h4>{title}</h4><Terms terms={terms} /></div>)}</div>
     <h3>Text Comparison</h3>
     <div className="text-comparison">{[first, second].map((question, index) => <div key={index}><h4>Question {index + 1}</h4><HighlightedQuestion text={question.original} matched={matched} /></div>)}</div>
     <details className="text-analysis"><summary>View Text Analysis</summary>

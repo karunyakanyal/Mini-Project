@@ -23,14 +23,14 @@ export default function DuplicateFinder() {
   return <section className="tool-section" id="finder" aria-labelledby="finder-heading">
     <div className="section-heading compare-heading"><div><p className="eyebrow">Duplicate Search</p><h1 id="finder-heading">Find Existing Duplicates</h1></div><span className="mode-badge">{isMockMode ? 'Demo Mode' : 'Backend Mode'}</span></div>
     <p className="intro">Enter a new question to check whether similar questions already exist.</p>
-    <form className="card" onSubmit={search} aria-busy={loading}>
+    <form className="card workspace-panel" onSubmit={search} aria-busy={loading}>
       <div className="tool-input"><label htmlFor="finder-question">New Question</label><textarea id="finder-question" maxLength={500} rows={5} value={question} disabled={loading} onChange={event => update(event.target.value)} placeholder="How can I start learning Python?" aria-describedby="finder-count" required /><span className="character-counter" id="finder-count">{question.length} / 500</span></div>
       <div className="workspace-actions"><div className="form-actions"><button className="button primary" disabled={loading || !question.trim()}>{loading ? 'Searching...' : 'Find Similar Questions'}</button><button className="button quiet" type="button" onClick={() => update('')} disabled={loading}>Clear</button></div>
         <div className="example-actions"><span>Try example:</span><button type="button" disabled={loading} onClick={() => update('How can I start learning Python?')}>Python Learning</button><button type="button" disabled={loading} onClick={() => update('What is cloud computing?')}>Cloud Computing</button></div>
       </div>
     </form>
-    <p className="demo-note">{isMockMode ? `Searching ${demoQuestionCount} demonstration questions using local text similarity.` : 'Searches the connected question repository. Match labels use display thresholds.'}</p>
-    {isMockMode && <p className="demo-note">Demo repository &middot; No external database connected. Uses known word forms and a small concept map, not a semantic model.</p>}
+    <div className="info-banner"><p className="eyebrow">{isMockMode ? 'Demo Repository' : 'Connected Repository'}</p><p>{isMockMode ? `Searching ${demoQuestionCount} demonstration questions using local text similarity.` : 'Searches the connected question repository. Match labels use display thresholds.'}</p>
+    {isMockMode && <p>Demo repository &middot; No external database connected. Uses known word forms and a small concept map, not a semantic model.</p>}</div>
     <ErrorMessage message={error} />
     <div aria-live="polite" aria-atomic="true">
       {loading && <p className="empty-state">Searching questions...</p>}

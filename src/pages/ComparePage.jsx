@@ -49,10 +49,17 @@ export default function ComparePage() {
   }
   return (
       <section id="compare" aria-labelledby="compare-heading">
-        <div className="section-heading compare-heading"><div><p className="eyebrow">Text Similarity Analysis</p><h1 id="compare-heading">Compare Questions</h1></div><span className="mode-badge"><span className="status-dot" aria-hidden="true" />{isMockMode ? 'Demo Mode' : 'Backend Mode'}</span></div>
-        <p className="intro">Compare two questions and analyse how closely their meaning and wording match.</p>
+        <header className="page-header">
+          <div><p className="eyebrow">Text Similarity Analysis</p><h1 id="compare-heading">Compare <span className="title-accent">Questions</span></h1>
+            <p className="page-description">Compare two questions and analyse how closely their meaning and wording match.</p>
+          </div>
+          <aside className="mode-panel" aria-label="Implementation status">
+            <p className="mode-label"><span className="status-dot" aria-hidden="true" />{isMockMode ? 'Demo Mode' : 'Backend Mode'}</p>
+            <p>{isMockMode ? 'Using demonstration similarity logic until the NLP backend is connected.' : 'Questions are analysed by the configured NLP backend.'}</p>
+          </aside>
+        </header>
         <QuestionComparisonForm question1={question1} question2={question2} onQuestionChange={handleQuestionChange} onCompare={handleCompare} onSwap={handleSwap} onClear={handleClear} onExample={handleExample} loading={loading} />
-        {isMockMode && <p className="demo-note">Using demonstration logic until the NLP backend is connected.</p>}
+        <aside className="context-tip"><span className="eyebrow">Tip</span><p>Try questions with similar meaning but different wording to see how text similarity behaves.</p></aside>
         <ErrorMessage message={error} />
         <div aria-live="polite" aria-atomic="true">{result && <ResultCard result={result} />}</div>
       </section>

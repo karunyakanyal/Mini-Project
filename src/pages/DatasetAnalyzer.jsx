@@ -39,11 +39,12 @@ export default function DatasetAnalyzer() {
   return <section className="tool-section" id="dataset" aria-labelledby="dataset-heading">
     <div className="section-heading compare-heading"><div><p className="eyebrow">Batch Analysis</p><h1 id="dataset-heading">Dataset Analyzer</h1></div><span className="mode-badge">{isMockMode ? 'Demo Analysis' : 'Backend Analysis'}</span></div>
     <p className="intro">Upload a question dataset to identify potential duplicate question pairs.</p>
-    <div className="card dataset-upload" aria-busy={busy}>
+    <div className="card workspace-panel dataset-upload" aria-busy={busy}>
       <div className={`upload-zone ${dragging ? 'dragging' : ''}`} onDragOver={event => { event.preventDefault(); if (!busy) setDragging(true) }} onDragLeave={() => setDragging(false)} onDrop={event => { event.preventDefault(); setDragging(false); if (!busy) { if (event.dataTransfer.files.length !== 1) setError('Drop one CSV file at a time.'); else loadFile(event.dataTransfer.files[0]) } }}>
+        <svg className="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true"><path d="M14 3H5v18h14V8l-5-5Z M14 3v5h5 M8 12h8 M8 16h8" /></svg>
         <h3>Upload Question Dataset</h3><p>Drag &amp; drop CSV here or choose a file.</p>
         <input className="sr-only" ref={fileInput} type="file" id="dataset-file" aria-label="Upload question CSV" accept=".csv,text/csv" disabled={busy} onChange={event => loadFile(event.target.files[0])} />
-        <button type="button" className="button secondary" disabled={busy} onClick={() => fileInput.current?.click()}>Choose CSV</button>
+        <button type="button" className="button secondary" disabled={busy} onClick={() => fileInput.current?.click()}>Upload CSV</button>
         <p className="demo-note">CSV &middot; Maximum 2 MB &middot; 1–500 characters per question</p>
       </div>
       <div className="dataset-file-info"><p>Use a <code>question</code> column. First-column headers <code>text</code> and <code>questions</code> are also accepted.</p>

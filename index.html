@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="description" content="QuerySense — Intelligent Duplicate Question Detection Using Text Similarity Techniques." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('querysense-theme') === 'dark' ? 'dark' : 'light'
+      } catch { document.documentElement.dataset.theme = 'light' }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>QuerySense | Duplicate Question Detection</title>
   </head>
   <body>

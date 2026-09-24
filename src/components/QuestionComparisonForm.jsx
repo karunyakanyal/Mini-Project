@@ -1,12 +1,12 @@
 export default function QuestionComparisonForm({ question1, question2, onQuestionChange, onCompare, onSwap, onClear, onExample, loading }) {
-  return <form className="card comparison-card" onSubmit={onCompare} aria-busy={loading}>
+  return <form className="card workspace-panel comparison-card" onSubmit={onCompare} aria-busy={loading}>
     <div className="question-grid">{[question1, question2].map((question, index) =>
       <div className="input-group" key={index}>
         <div className="input-heading"><span className="input-number" aria-hidden="true">0{index + 1}</span><div>
-          <label htmlFor={`question-${index + 1}`}>Question {index + 1}</label>
+          <label htmlFor={`question-${index + 1}`}>Question {index === 0 ? 'A' : 'B'}</label>
           <p id={`hint-${index + 1}`}>{index === 0 ? 'Source question' : 'Comparison question'}</p>
         </div></div>
-        <textarea id={`question-${index + 1}`} rows={6} maxLength={500} value={question} disabled={loading}
+        <textarea id={`question-${index + 1}`} rows={5} maxLength={500} value={question} disabled={loading}
           onChange={event => onQuestionChange(index, event.target.value)}
           placeholder={index === 0 ? 'How can I learn Python effectively?' : 'What is the best way to learn Python?'}
           aria-describedby={`hint-${index + 1} count-${index + 1}`} required />
